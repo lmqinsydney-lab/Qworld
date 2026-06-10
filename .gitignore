@@ -1,0 +1,12 @@
+# 默认忽略一切(本目录有很多开发用文件/demo,不需要部署)
+/*
+# 放行:部署到 Vercel 需要的文件
+!/.gitignore
+!/index.html
+!/assets/
+/assets/*
+!/assets/midcentury.jpg
+!/assets/french-cream.jpg
+!/assets/elements/
+/assets/elements/*
+!/assets/elements/hero.svg

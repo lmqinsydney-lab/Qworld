@@ -1,0 +1,14 @@
+<svg viewBox="0 0 150 130" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- 占位:焕新后的「点睛之笔」核心单品(示意:折叠毛毯)。真实方案会按风格提炼后替换 -->
+  <defs>
+    <linearGradient id="bk" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#b06a3c"/><stop offset="1" stop-color="#8c5028"/>
+    </linearGradient>
+  </defs>
+  <rect x="16" y="32" width="118" height="78" rx="14" fill="url(#bk)"/>
+  <path d="M112 32 L134 32 L134 54 Z" fill="#c68753"/>
+  <g stroke="#caa178" stroke-width="2.4" opacity=".55">
+    <path d="M30 50 H120"/><path d="M30 71 H120"/><path d="M30 92 H120"/>
+  </g>
+  <path d="M16 60 H134" stroke="#6f3f20" stroke-width="3" opacity=".5"/>
+</svg>
