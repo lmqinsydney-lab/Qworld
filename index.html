@@ -39,10 +39,17 @@
   #home{overflow:hidden;}
   #home #auroraCanvas{position:absolute;inset:0;width:100%!important;height:100%!important;opacity:.6;pointer-events:none;z-index:0;}
   #home::before{content:"";position:absolute;top:0;left:0;right:0;height:160px;background:linear-gradient(180deg,rgba(8,8,10,.78) 0%,rgba(8,8,10,0) 100%);z-index:1;pointer-events:none;}
-  #home .topbar{position:relative;z-index:30;display:flex;align-items:flex-start;justify-content:space-between;padding:8px 22px 0;}
-  #home .topbar .t{font-size:24px;font-weight:800;letter-spacing:-.5px;cursor:pointer;display:flex;align-items:center;}
-  #home .topbar .t .caret{font-size:14px;margin-left:4px;color:#1ed760;}
-  #home .topbar .s{font-size:12px;color:#1ed760;font-weight:600;margin-top:5px;}
+  #home .topbar{position:relative;z-index:30;display:flex;align-items:center;justify-content:space-between;padding:8px 22px 0;}
+  /* 品牌 logo:发光胶囊 + 胶囊小屋/Capsule Home */
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand svg{filter:drop-shadow(0 0 7px rgba(64,232,150,.7));}
+  .brand .bt{display:flex;flex-direction:column;line-height:1.2;}
+  .brand .bt .cn{font-size:16px;font-weight:800;letter-spacing:2px;}
+  .brand .bt .en{font-size:9px;color:#9a9aa2;font-weight:600;letter-spacing:1.6px;margin-top:1px;}
+  /* 标题移到 3D 小屋下方、卡片左上方 */
+  #home .hometitle{position:relative;z-index:3;padding:8px 18px 12px;}
+  #home .hometitle .t{font-size:24px;font-weight:800;letter-spacing:-.5px;cursor:pointer;display:inline-flex;align-items:center;}
+  #home .hometitle .t .caret{font-size:14px;margin-left:4px;color:#1ed760;}
   .hxwrap{position:relative;}
   .hxmenu{position:absolute;top:100%;left:0;margin-top:8px;min-width:140px;background:rgba(28,28,32,.98);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:6px;box-shadow:0 12px 32px rgba(0,0,0,.5);opacity:0;transform:translateY(-6px);pointer-events:none;transition:.16s;z-index:20;}
   .hxmenu.open{opacity:1;transform:translateY(0);pointer-events:auto;}
@@ -91,13 +98,15 @@
   #home .tip{position:relative;z-index:2;text-align:left;font-size:11px;color:#7a7a80;padding:8px 18px 2px;}
 
   /* ===== detail ===== */
-  #detail .nav,#result .nav{display:flex;align-items:center;gap:14px;padding:8px 18px 12px;}
-  #detail .nav .back,#result .nav .back{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-  #detail .nav .ttl,#result .nav .ttl{font-size:24px;font-weight:800;letter-spacing:-.5px;}
-  .photo{margin:0 18px;border-radius:20px;height:230px;background-size:cover;background-position:center;position:relative;overflow:hidden;}
+  /* 详情页:全屏顶图 hero + 悬浮圆形返回按钮(与首页右上角 gear 同款) */
+  #detail .dback{position:absolute;top:max(14px,env(safe-area-inset-top));left:16px;z-index:30;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;cursor:pointer;}
+  .dhero{position:relative;width:100%;}
+  .dhero-scrim{position:absolute;left:0;right:0;bottom:0;height:62%;pointer-events:none;background:linear-gradient(180deg,rgba(0,0,0,0) 0%,rgba(0,0,0,.5) 52%,#000 100%);}
+  .dhero-name{position:absolute;left:0;right:0;bottom:18px;z-index:5;pointer-events:none;text-align:center;font-size:26px;font-weight:800;letter-spacing:-.5px;color:#fff;text-shadow:0 2px 12px rgba(0,0,0,.55);}
+  .photo{margin:0;border-radius:0;height:340px;background-size:cover;background-position:center;position:relative;overflow:hidden;}
   .photo .badge{position:absolute;top:12px;left:12px;font-size:11px;padding:5px 12px;border-radius:30px;background:rgba(0,0,0,.5);backdrop-filter:blur(8px);}
   .photo .badge.gold{background:linear-gradient(135deg,rgba(231,201,137,.92),rgba(202,161,90,.92));color:#2a1e08;font-weight:700;}
-  .photo .acts{position:absolute;top:12px;right:12px;display:flex;gap:8px;}
+  .photo .acts{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;display:flex;gap:8px;z-index:6;}
   .photo .chip{font-size:11px;font-weight:600;color:#fff;padding:6px 12px;border-radius:30px;background:rgba(0,0,0,.52);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);}
   .photo .load{position:absolute;inset:0;background:rgba(8,8,10,.66);backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;}
   .spin{width:34px;height:34px;border-radius:50%;border:3px solid rgba(255,255,255,.18);border-top-color:#1ed760;animation:spin 0.8s linear infinite;}
@@ -136,8 +145,8 @@
   .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;box-shadow:0 0 8px rgba(0,0,0,.6);}
   .ba .grip{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:34px;height:34px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;color:#111;font-size:13px;font-weight:800;box-shadow:0 2px 10px rgba(0,0,0,.5);}
   /* 详情页顶部用的对比滑块:尺寸/圆角对齐原 .photo */
-  .ba.dba{margin:0 18px;height:230px;border-radius:20px;}
-  .ba .acts{position:absolute;top:12px;right:12px;display:flex;gap:8px;z-index:4;}
+  .ba.dba{margin:0;height:340px;border-radius:0;}
+  .ba .acts{position:absolute;top:max(14px,env(safe-area-inset-top));right:14px;display:flex;gap:8px;z-index:6;}
   .ba .chip{font-size:11px;font-weight:600;color:#fff;padding:6px 12px;border-radius:30px;background:rgba(0,0,0,.52);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.14);cursor:pointer;}
   .clist{padding:18px 18px 0;}
   .card{background:#141416;border:1px solid #232327;border-radius:16px;padding:16px;margin-bottom:12px;}
@@ -178,10 +187,14 @@
   <div class="screen sa-top sa-bot" id="home">
     <canvas id="auroraCanvas"></canvas>
     <div class="topbar">
-      <div class="hxwrap">
-        <div class="t" onclick="toggleHxMenu(event)">我的家 · <span id="hxLabel">两居室</span><span class="caret">▾</span></div>
-        <div class="s" id="homeCount">已点亮 0 / 0 个房间</div>
-        <div class="hxmenu" id="hxMenu"></div>
+      <div class="brand">
+        <svg width="26" height="38" viewBox="0 0 36 52" fill="none">
+          <rect x="3" y="3" width="30" height="46" rx="15" stroke="#3fe896" stroke-width="3"/>
+          <path d="M7.5 27 L18 16.5 L28.5 27" stroke="#3fe896" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <rect x="15.5" y="28.5" width="5" height="5" rx="1" fill="#aef3d2"/>
+          <path d="M4 38 H32" stroke="#3fe896" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <div class="bt"><span class="cn">胶囊小屋</span><span class="en">CAPSULE HOME</span></div>
       </div>
       <div class="gear" onclick="go('onb')">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="#fff" stroke-width="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>
@@ -189,17 +202,18 @@
     </div>
     <div class="homescroll" id="homeScroll">
       <div class="house3d" id="house3d"><canvas id="houseCanvas"></canvas></div>
+      <div class="hometitle hxwrap">
+        <div class="t" onclick="toggleHxMenu(event)">我的家 · <span id="hxLabel">两居室</span><span class="caret">▾</span></div>
+        <div class="hxmenu" id="hxMenu"></div>
+      </div>
       <div class="cards" id="cardsWrap"></div>
     </div>
   </div>
 
   <!-- ========== ROOM DETAIL ========== -->
-  <div class="screen sa-top sa-bot" id="detail">
-    <div class="nav">
-      <div class="back" onclick="go('home')">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </div>
-      <div class="ttl" id="dTitle">我的房间</div>
+  <div class="screen sa-bot" id="detail">
+    <div class="dback" onclick="go('home')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 5l-7 7 7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </div>
     <div class="body" id="dBody"></div>
     <div class="foot" id="dFoot"></div>
@@ -307,10 +321,6 @@ function renderHome(){
     html += `<div class="grid">`+smalls.map((r,i)=>cardHTML(r,false,(smalls.length%2===1)&&(i===smalls.length-1))).join('')+`</div>`;
   }
   document.getElementById('cardsWrap').innerHTML=html;
-  const all=Object.values(rooms),total=all.length;
-  const lit=all.filter(r=>r.state!=='empty').length;
-  const ren=all.filter(r=>r.state==='renovated').length;
-  document.getElementById('homeCount').textContent=`已点亮 ${lit} / ${total}` + (ren?` · 已焕新 ${ren}`:'');
   document.getElementById('hxLabel').textContent=curHuxing;
   renderHxMenu();
 }
@@ -333,7 +343,7 @@ function openRoom(name){
 
 function renderDetail(){
   const name=currentRoom, r=rooms[name];
-  document.getElementById('dTitle').textContent='我的'+name;
+  const heroExtra=`<div class="dhero-scrim"></div><div class="dhero-name">我的${name}</div>`;
   let upper;
   if(r.state==='empty'){
     upper=`<div class="upbox">
@@ -344,10 +354,10 @@ function renderDetail(){
   } else if(r.state==='renovated'){
     // 顶部改成「改造前后对比」滑块;去掉 AI 焕新标签与重新生成(重新生成只在「找灵感」里)
     const acts=`<div class="acts"><div class="chip" onclick="replacePhoto()" onmousedown="event.stopPropagation()" ontouchstart="event.stopPropagation()">更换照片</div></div>`;
-    upper=baHTML(r.orig||r.result, r.result, 'dba', acts);
+    upper=`<div class="dhero">${baHTML(r.orig||r.result, r.result, 'dba', acts)}${heroExtra}</div>`;
   } else {
-    upper=`<div class="photo" id="dPhoto" style="background-image:url('${r.orig}')">
-      <div class="acts"><div class="chip" onclick="replacePhoto()">更换照片</div></div></div>`;
+    upper=`<div class="dhero"><div class="photo" id="dPhoto" style="background-image:url('${r.orig}')">
+      <div class="acts"><div class="chip" onclick="replacePhoto()">更换照片</div></div></div>${heroExtra}</div>`;
   }
 
   // 顶部图片区(upper)与下方 tab 面板分开:切换 tab 只重渲染 #dLower,
